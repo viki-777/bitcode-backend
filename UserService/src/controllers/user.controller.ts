@@ -136,7 +136,7 @@ export async function updateStreak(req: Request, res: Response, next: NextFuncti
             : null;
 
         if (lastDate === today) {
-            // Already solved today — no streak change
+            
             return res.status(200).json({ success: true, message: 'Already counted today' });
         }
 
@@ -170,7 +170,7 @@ export async function recordActivity(req: Request, res: Response, next: NextFunc
         const { userId } = req.params;
         const today = new Date().toISOString().split('T')[0];
 
-        // Increment count for today, or create if not exists
+       
         await Activity.findOneAndUpdate(
             { userId, date: today },
             { $inc: { count: 1 } },
